@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+
+  AlfaX:<br>
+  <input id="xid" type="text" name="alfaX" value="0">
+  <br>
+  AlfaY:<br>
+  <input id="yid" type="text" name="alfaY" value="0">
+  <br>
+  Land type:<br>
+  <input id="typeid" type="text" name="type" value="0">
+  <br><br>
+  <p id="demo"></p>
+  <button type="input" onclick="loadDoc()">Load land</button>
+
+  <button type="input" onclick="ajaxPost()">Save land</button>
+
+
+  <table border="1" id="myTable">
+   <tr>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+     <td><input type="text" size="2"></td>
+     <td><input type="text" size="2"></td>
+    <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+   <tr>
+           <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+          <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+         <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+        <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+       <td><input type="text" size="2"></td>
+      <td><input type="text" size="2"></td>
+   </tr>
+ </table>
+
+
+
+<script type="text/javascript">
+function loadDoc() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+    var resp = this.responseText;
+    var parsed = JSON.parse(resp);
+    var arr = [];
+    for(var x in parsed){
+      arr.push(parsed[x]);
+    }
+    var splitted = arr[0].split(",");
+          //document.getElementById("demo").innerHTML = splitted;//Массив в значениями Ланда
+         pushArray(splitted);
+         document.getElementById("typeid").value=splitted[0];
+
+        }
+      };
+      xhttp.open("POST", "http://127.0.0.1:8080/api/v1/findingLand", true);
+      xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    var xvalue = document.getElementById("xid").value;//текстовое поле Х
+    var yvalue = document.getElementById("yid").value;//текстовое поле У
+
+
+      var json = JSON.stringify({
+      alfaX: xvalue,
+      alfaY: yvalue
+    });
+      xhttp.send(json);
+}
+</script>
+<script>
+function pushArray(splitted){
+
+  var oTable = document.getElementById('myTable');
+
+    //gets rows of table
+    var rowLength = oTable.rows.length;
+
+    //loops through rows
+    for (i = 0; i < rowLength; i++){
+
+      //gets cells of current row
+       var oCells = oTable.rows[i].cells;
+
+       //gets amount of cells of current row
+       var cellLength = oCells.length;
+
+       //loops through each cell in current row
+       for(var j = 0; j < cellLength; j++){
+
+              // get your cell info here
+
+            oCells[j].getElementsByTagName("input")[0].value = splitted[i*10+j+1];
+           }
+    }
+}
+</script>
+
+<script type="text/javascript">
+function postArray(alfaX, alfaY){
+
+  var oTable = document.getElementById('myTable');
+  var arr= [
+    [0,1,2],
+    [1,2,3],
+    [2,3,4]
+  ];
+
+    //gets rows of table
+    var rowLength = oTable.rows.length;
+
+    //loops through rows
+    for (i = 0; i < rowLength; i++){
+
+      //gets cells of current row
+       var oCells = oTable.rows[i].cells;
+
+       //gets amount of cells of current rowlue
+       var cellLength = oCells.length;
+
+       //loops through each cell in current row
+       for(var j = 0; j < cellLength; j++){
+
+              // get your cell info here
+
+            arr[i*10+j]=oCells[j].getElementsByTagName("input")[0].value;
+          //  document.getElementById("demo").innerHTML=oCells[2].getElementsByTagName("input")[0].value;
+            document.getElementById("demo").innerHTML=i+" "+j;
+           }
+
+    }
+
+    return arr;
+}
+</script>
+<script type="text/javascript">
+function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+    var resp = this.responseText;
+          document.getElementById("demo").innerHTML = resp;//Массив в значениями Ланда
+        }
+      };
+      xhttp.open("POST", "http://127.0.0.1:8080/api/v1/createland", true);
+      xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    var xvalue = document.getElementById("xid").value;//текстовое поле Х
+    var yvalue = document.getElementById("yid").value;//текстовое поле У
+
+     var typeid = document.getElementById("typeid").value;//текстовое поле тип
+
+    var arrpost = postArray(xvalue, yvalue);
+
+
+
+      var json = JSON.stringify({
+      alfaX: xvalue,
+      alfaY: yvalue,
+      type: typeid,
+      beta: arrpost
+    });
+
+
+      xhttp.send(json);
+}
+</script>
+</body>
+</html>

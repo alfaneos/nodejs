@@ -15,7 +15,8 @@ exports.registerUser = (name, email, password) =>
             name: name,
             email: email,
             hashed_password: hash,
-            created_at: new Date()
+            created_at: new Date(),
+            landsDiscovered: ""
         });
 
         newUser.save()
