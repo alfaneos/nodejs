@@ -2,6 +2,7 @@
 
 const lands = require('../models/lands');
 const user = require('../models/user');
+const constant = require('../constant/constant');
 
 exports.findAllLands = (newemail) =>
 
@@ -37,7 +38,12 @@ exports.findAllLands = (newemail) =>
               var arr2=arr.split(",");
 
               arr2.forEach(function(value){
-                  filteredArr.push(lands[value]);
+
+                  lands.forEach(function(oneland){
+                    if((parseInt(oneland.alfaX)*constant.LANDSHEIGHT+parseInt(oneland.alfaY))==value){
+                      filteredArr.push(oneland);
+                    }
+                  });
                 });
 resolve(filteredArr);
 
