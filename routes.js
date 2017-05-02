@@ -14,6 +14,9 @@ const rewriteLand = require('./functions/rewriteLand');
 const getlandscape = require('./functions/findAllLands');
 const goToLand=require('./functions/goToLand');
 
+const findMonster=require('./functions/monster/search');
+const createMonster=require('./functions/monster/create');
+
 module.exports = router => {
 
     router.get('/', (req, res) => res.end('Welcome to Learn2Crack !'));
@@ -48,8 +51,6 @@ module.exports = router => {
       const alfaX = req.body.alfaX;
       const alfaY = req.body.alfaY;
 
-
-
         if ((!alfaX)||(!alfaY)) {
 
             res.status(400).json({ message: 'Invalid Request m !'+alfaX });
@@ -60,7 +61,27 @@ module.exports = router => {
 
             .then(result => {
 
+                res.status(result.status).json({ message: result.message });
 
+            })
+
+            .catch(err => res.status(err.status).json({ message: err.message }));
+        }
+    });
+    router.post('/findingmonster', (req, res) => {
+
+      const level = req.body.level;
+
+
+        if (!level) {
+
+            res.status(400).json({ message: 'Invalid Request m !' });
+
+        } else {
+
+            findMonster.search(level)
+
+            .then(result => {
 
                 res.status(result.status).json({ message: result.message });
 
@@ -86,6 +107,32 @@ module.exports = router => {
             .then(result => {
 
                 res.setHeader('Location', '/users/'+email);
+                res.status(result.status).json({ message: result.message })
+            })
+
+            .catch(err => res.status(err.status).json({ message: err.message }));
+        }
+    });
+    router.post('/createmonster', (req, res) => {
+
+        const name = req.body.name;
+        const level = req.body.level;
+        const class1 = req.body.class1;
+        const characteristics = req.body.characteristics;
+        const inventory = req.body.inventory;
+        const abilities = req.body.abilities;
+
+        if (!name || !level || !class1 || !name.trim()) {
+
+            res.status(400).json({message: 'Invalid Request !'});
+
+        } else {
+
+            createMonster.createMonster(name, level, class1, characteristics, inventory, abilities)
+
+            .then(result => {
+
+                res.setHeader('Location', '/monster/'+level);
                 res.status(result.status).json({ message: result.message })
             })
 

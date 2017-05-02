@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+
+  Name:<br>
+  <input id="name" type="text" name="name" value="0">
+  <br>
+  Level:<br>
+  <input id="level" type="text" name="level" value="0">
+  <br>
+  Class:<br>
+  <input id="class1" type="text" name="class1" value="0">
+  <br>
+  Characteristics:<br>
+  <input id="characteristics" type="text" name="characteristics" value="0">
+  <br>
+  Inventory:<br>
+  <input id="inventory" type="text" name="inventory" value="0">
+  <br>
+  Abilities:<br>
+  <input id="abilities" type="text" name="abilities" value="0">
+  <br><br>
+  <p id="demo"></p>
+  <button type="input" onclick="loadDoc()">Load monster</button>
+
+  <button type="input" onclick="ajaxPost()">Save monster</button>
+
+
+
+
+
+<script type="text/javascript">
+function loadDoc() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+    var resp = this.responseText;
+
+         document.getElementById("name").value=resp.name;
+         document.getElementById("demo").innerHTML="found";
+        }
+        else {
+          document.getElementById("demo").innerHTML="empty";
+        }
+      };
+      xhttp.open("POST", "http://127.0.0.1:8080/api/v1/findingmonster", true);
+      xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    var value1 = document.getElementById("level").value;//текстовое поле Х
+
+      var json = JSON.stringify({
+      level: value1
+    });
+      xhttp.send(json);
+}
+</script>
+
+
+
+<script type="text/javascript">
+function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+    var resp = this.responseText;
+          document.getElementById("demo").innerHTML = resp;//Массив в значениями Ланда
+        }
+      };
+      xhttp.open("POST", "http://127.0.0.1:8080/api/v1/createmonster", true);
+      xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+      var value1 = document.getElementById("name").value;//текстовое поле Х
+      var value2 =document.getElementById("level").value.split(",");//текстовое поле У
+      var value3 = document.getElementById("class1").value.split(",");//текстовое поле Х
+      var value4 = document.getElementById("characteristics").value.split(",");//текстовое поле У
+      var value5 = document.getElementById("inventory").value.split(",");//текстовое поле Х
+      var value6 = document.getElementById("abilities").value.split(",");//текстовое поле У
+
+
+
+      var json = JSON.stringify({
+      name: value1,
+      level: value2,
+      class1: value3,
+      characteristics: value4,
+      inventory: value5,
+      abilities: value6
+    });
+
+
+      xhttp.send(json);
+}
+</script>
+</body>
+</html>
