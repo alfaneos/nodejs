@@ -9,18 +9,18 @@ const heroSchema = mongoose.Schema({
 
     email            : String,
     name              : String,
-    level : [Number],
-    class : [String],
-    maxCharacteristics : [Number],
-    currentCharacteristics : [Number],
-    abilities : [Number],
-    inventorysize : Number,
-    inventory : [Number],
-    currentCoordinates : [Number],
-    destinationCoordinates: [Number],
-    logonDate: Date,
-    lastEnemy: [Number],
-    lastStrike: Boolean
+    level : [Number],//уровень, опыт
+    class : [String],//список классов
+    maxCharacteristics : [Number],//максимальные характеристики: ьелосложение, выносливость, чакры, сила, ловкость
+    currentCharacteristics : [Number],//текущие характеристики
+    abilities : [Number],//список способностей
+    inventorysize : Number,//размер массива
+    inventory : [Number],//инвентарь
+    currentCoordinates : [Number],//текущие координаты: альфаХ алфаУ бетаХ бетаУ
+    destinationCoordinates: [Number],//координаты направления
+    logonDate: Date,//дата последних изменений
+    lastEnemy: [Number],//массив последнего противника: имя, модификатор, текущее здоровье
+    lastStrike: Boolean//бил ли герой последним?
 
 });
 

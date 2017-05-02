@@ -24,7 +24,7 @@ module.exports = router => {
 
 
     router.post('/authenticate', (req, res) => {
-
+//адрес для логирования
         const credentials = auth(req);
 
         if (!credentials) {
@@ -47,7 +47,7 @@ module.exports = router => {
         }
     });
     router.post('/findingLand', (req, res) => {
-
+//адрес для поиска определенной ячейки
       const alfaX = req.body.alfaX;
       const alfaY = req.body.alfaY;
 
@@ -69,7 +69,7 @@ module.exports = router => {
         }
     });
     router.post('/findingmonster', (req, res) => {
-
+//адрес для поиска монстра по уровню
       const level = req.body.level;
 
 
@@ -91,7 +91,7 @@ module.exports = router => {
         }
     });
     router.post('/users', (req, res) => {
-
+//адрес для регистрации
         const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
@@ -114,7 +114,7 @@ module.exports = router => {
         }
     });
     router.post('/createmonster', (req, res) => {
-
+//адрес для создания монстра
         const name = req.body.name;
         const level = req.body.level;
         const class1 = req.body.class1;
@@ -140,7 +140,7 @@ module.exports = router => {
         }
     });
     router.post('/createland', (req, res) => {
-
+//адрес для создания ячейки
         const alfaX = req.body.alfaX;
         const alfaY = req.body.alfaY;
         const type = req.body.type;
@@ -170,7 +170,7 @@ module.exports = router => {
     });
 
     router.get('/landscape/:id', (req,res) => {
-
+//адрес для получения всех ячеек открытых героем
         if (checkToken(req)) {
 
             getlandscape.findAllLands(req.params.id)
@@ -185,7 +185,7 @@ module.exports = router => {
         }
     });
     router.get('/landscape/:id/:land', (req,res) => {
-
+//адрес для поиска определенной ячейки
         if (checkToken(req)) {
           const land = req.params.land;
 
@@ -201,7 +201,7 @@ module.exports = router => {
         }
     });
     router.get('/users/:id', (req,res) => {
-
+//адрес для открытия профиля
         if (checkToken(req)) {
 
             profile.getProfile(req.params.id)
@@ -217,7 +217,7 @@ module.exports = router => {
     });
 
     router.put('/users/:id', (req,res) => {
-
+//адрес для смены пароля
         if (checkToken(req)) {
 
             const oldPassword = req.body.password;
@@ -243,7 +243,7 @@ module.exports = router => {
     });
 
     router.post('/users/:id/password', (req,res) => {
-
+//адрес для сброса пароля
         const email = req.params.id;
         const token = req.body.token;
         const newPassword = req.body.password;

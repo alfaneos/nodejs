@@ -9,11 +9,11 @@ const monsterSchema = mongoose.Schema({
 
 
     name              : String,
-    level : [Number],
-    class1 : [String],
-    characteristics : [Number],
-    inventory : [Number],
-    abilities : [Number]
+    level : [Number],//уровень, опыт
+    class1 : [String],//список классов
+    characteristics : [Number],//телосложение, выносливость, чакры, сила, ловкость
+    inventory : [Number],//список вещей
+    abilities : [Number]//список способностей
 
 
 

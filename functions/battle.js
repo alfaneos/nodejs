@@ -13,7 +13,7 @@ exports.getBattle = email =>
             var currentMonster=[];
             currentMonster=heroes[0].lastEnemy;
             if(currentMonster[2]!=0){
-
+              const newMonster = findEnemy(heroes[0].)
             }
 
 

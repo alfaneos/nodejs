@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
 
 const landsSchema = mongoose.Schema({
 
-    alfaX  : String,
-    alfaY  : String,
-    type   : String,
-    beta   : String
+    alfaX  : String,//координата большей по икс
+    alfaY  : String,//координата большей по игрек
+    type   : String,//тип ячейки (лес, дорога)
+    beta   : String//массив в виде строки где указаны типы всех внутренних ячеек через запятую
 
 });
 

@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     created_at        : String,
     temp_password    : String,
     temp_password_time: String,
-    landsDiscovered: String
+    landsDiscovered: String//список ячеек в которых он был (открытых)
 
 
 });
