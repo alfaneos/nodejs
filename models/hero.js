@@ -10,22 +10,24 @@ const heroSchema = mongoose.Schema({
     email            : String,
     name              : String,
     level : [Number],//уровень, опыт
-    class : [String],//список классов
-    maxCharacteristics : [Number],//максимальные характеристики: ьелосложение, выносливость, чакры, сила, ловкость
+    class1 : [String],//список классов
+    maxCharacteristics : [Number],//максимальные характеристики: здоровье, выносливость, мана
     currentCharacteristics : [Number],//текущие характеристики
+    maxStats : [Number],//максимальные характеристики: телосложение, выносливость, чакры, сила, ловкость
+    currentStats : [Number],//текущие характеристики
     abilities : [Number],//список способностей
     inventorysize : Number,//размер массива
     inventory : [Number],//инвентарь
     currentCoordinates : [Number],//текущие координаты: альфаХ алфаУ бетаХ бетаУ
     destinationCoordinates: [Number],//координаты направления
     logonDate: Date,//дата последних изменений
-    lastEnemy: [Number],//массив последнего противника: имя, модификатор, текущее здоровье
+    lastEnemy: [String],//массив последнего противника: имя, модификатор, текущее здоровье
     lastStrike: Boolean//бил ли герой последним?
 
 });
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/node-login');
+mongoose.createConnection('mongodb://localhost:27017/node-login');
 
 module.exports = mongoose.model('hero', heroSchema);
 

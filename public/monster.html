@@ -14,8 +14,11 @@
   Class:<br>
   <input id="class1" type="text" name="class1" value="0">
   <br>
-  Characteristics:<br>
+  Characteristics(здоровье,выносливость, мана):<br>
   <input id="characteristics" type="text" name="characteristics" value="0">
+  <br>
+  Stats(телосложение, выносливость, чакры, сила, ловкость):<br>
+  <input id="stats" type="text" name="stats" value="0">
   <br>
   Inventory:<br>
   <input id="inventory" type="text" name="inventory" value="0">
@@ -33,13 +36,20 @@
 
 
 <script type="text/javascript">
-function loadDoc() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+function loadDoc() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА МОНСТРА
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
     var resp = this.responseText;
-
-         document.getElementById("name").value=resp.name;
+    var l =resp.length;
+    var gg = resp.substring(5,l-1);
+    var hh=JSON.parse(gg);
+         document.getElementById("level").value=hh.level;
+         document.getElementById("class1").value=hh.class1;
+         document.getElementById("characteristics").value=hh.characteristics;
+         document.getElementById("stats").value=hh.stats;
+         document.getElementById("inventory").value=hh.inventory;
+         document.getElementById("abilities").value=hh.abilities;
          document.getElementById("demo").innerHTML="found";
         }
         else {
@@ -48,19 +58,27 @@ function loadDoc() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
       };
       xhttp.open("POST", "http://127.0.0.1:8080/api/v1/findingmonster", true);
       xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    var value1 = document.getElementById("level").value;//текстовое поле Х
+    var value1 = document.getElementById("name").value;//текстовое поле Х
 
       var json = JSON.stringify({
-      level: value1
+      name: value1
     });
       xhttp.send(json);
 }
 </script>
-
+<script>
+function cut(splitted){
+  var ret=[];
+  for(i=5; i<splitted.length-1; i++){
+    ret[i-5]=splitted[i];
+  }
+  return ret;
+}
+</script>
 
 
 <script type="text/javascript">
-function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
+function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ СОХРАНЕНИЯ МОНСТРА
       var xhttp = new XMLHttpRequest();
 
       xhttp.onreadystatechange = function() {
@@ -72,9 +90,10 @@ function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
       xhttp.open("POST", "http://127.0.0.1:8080/api/v1/createmonster", true);
       xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
       var value1 = document.getElementById("name").value;//текстовое поле Х
-      var value2 =document.getElementById("level").value.split(",");//текстовое поле У
+      var value2 =document.getElementById("level").value;//текстовое поле У
       var value3 = document.getElementById("class1").value.split(",");//текстовое поле Х
       var value4 = document.getElementById("characteristics").value.split(",");//текстовое поле У
+      var valuestats = document.getElementById("stats").value.split(",");
       var value5 = document.getElementById("inventory").value.split(",");//текстовое поле Х
       var value6 = document.getElementById("abilities").value.split(",");//текстовое поле У
 
@@ -85,6 +104,7 @@ function ajaxPost() {//АЯКС ЗАПРОС ДЛЯ ПОИСКА ЛАНДА
       level: value2,
       class1: value3,
       characteristics: value4,
+      stats: valuestats,
       inventory: value5,
       abilities: value6
     });

@@ -16,15 +16,19 @@ const goToLand=require('./functions/goToLand');
 
 const findMonster=require('./functions/monster/search');
 const createMonster=require('./functions/monster/create');
+const createHero=require('./functions/hero/create');
+const overwriteHero=require('./functions/hero/overwrite');
+
+const battle=require('./functions/battle');
 
 module.exports = router => {
 
     router.get('/', (req, res) => res.end('Welcome to Learn2Crack !'));
-//  router.get('/lands', (req, res) => res.sendFile(__dirname+'/public/lands.html'));
+        //  router.get('/lands', (req, res) => res.sendFile(__dirname+'/public/lands.html'));
 
 
     router.post('/authenticate', (req, res) => {
-//адрес для логирования
+        //адрес для логирования
         const credentials = auth(req);
 
         if (!credentials) {
@@ -37,7 +41,7 @@ module.exports = router => {
 
             .then(result => {
 
-                const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
+                const token = jwt.sign(result, config.secret, { expiresIn: 60*60*24 });
 
                 res.status(result.status).json({ message: result.message, token: token });
 
@@ -47,7 +51,7 @@ module.exports = router => {
         }
     });
     router.post('/findingLand', (req, res) => {
-//адрес для поиска определенной ячейки
+          //адрес для поиска определенной ячейки
       const alfaX = req.body.alfaX;
       const alfaY = req.body.alfaY;
 
@@ -69,21 +73,22 @@ module.exports = router => {
         }
     });
     router.post('/findingmonster', (req, res) => {
-//адрес для поиска монстра по уровню
-      const level = req.body.level;
+        //адрес для поиска монстра по уровню
+      const name = req.body.name;
 
 
-        if (!level) {
+        if (!name) {
 
             res.status(400).json({ message: 'Invalid Request m !' });
 
         } else {
 
-            findMonster.search(level)
+            findMonster.search(name)
 
             .then(result => {
 
-                res.status(result.status).json({ message: result.message });
+                //res.status(result.status).json({ message: result.message });
+                res.json(result);
 
             })
 
@@ -91,7 +96,7 @@ module.exports = router => {
         }
     });
     router.post('/users', (req, res) => {
-//адрес для регистрации
+        //адрес для регистрации
         const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
@@ -113,12 +118,51 @@ module.exports = router => {
             .catch(err => res.status(err.status).json({ message: err.message }));
         }
     });
+    router.post('/createhero', (req, res) => {
+        //адрес для создания героя
+        const name = req.body.name;
+        const email = req.body.email;
+        const class1 = [];
+        const inventorysize = 10;
+        const inventory = [0];
+        const abilities = [1];
+        const level = [1,0];
+        const maxCharacteristics = [10,10,10];
+        const currentCharacteristics = [10,10,10];
+        const maxStats=[1,1,1,1,1];
+        const currentStats=[1,1,1,1,1];
+        const currentCoordinates = [0,0,0,0,0];
+        const destinationCoordinates = [0,0,0,0,0];
+        const logonDate = new Date();
+        const lastEnemy = [0,0,0,0,0,0];
+        const lastStrike=false;
+
+        if (!name || !email || !name.trim() || !email.trim()) {
+
+            res.status(400).json({message: 'Invalid Request !'});
+
+        } else {
+
+            createHero.createHero(name, email, class1, inventorysize, inventory, abilities, level,
+              maxCharacteristics, currentCharacteristics, maxStats, currentStats, currentCoordinates,
+            destinationCoordinates, logonDate, lastEnemy, lastStrike)
+
+            .then(result => {
+
+                res.setHeader('Location', '/hero/'+email);
+                res.status(result.status).json({ message: result.message })
+            })
+
+            .catch(err => res.status(err.status).json({ message: err.message }));
+        }
+    });
     router.post('/createmonster', (req, res) => {
-//адрес для создания монстра
+      //адрес для создания монстра
         const name = req.body.name;
         const level = req.body.level;
         const class1 = req.body.class1;
         const characteristics = req.body.characteristics;
+        const stats=req.body.stats;
         const inventory = req.body.inventory;
         const abilities = req.body.abilities;
 
@@ -128,7 +172,7 @@ module.exports = router => {
 
         } else {
 
-            createMonster.createMonster(name, level, class1, characteristics, inventory, abilities)
+            createMonster.createMonster(name, level, class1, characteristics, stats, inventory, abilities)
 
             .then(result => {
 
@@ -140,7 +184,7 @@ module.exports = router => {
         }
     });
     router.post('/createland', (req, res) => {
-//адрес для создания ячейки
+      //адрес для создания ячейки
         const alfaX = req.body.alfaX;
         const alfaY = req.body.alfaY;
         const type = req.body.type;
@@ -165,12 +209,30 @@ module.exports = router => {
             .catch(err => res.status(err.status).json({ message: err.message }));
 
 
-
         }
     });
+    router.get('/battle/:id', (req,res) => {
+    //адрес для получения всех ячеек открытых героем
+        if (checkToken(req)) {
 
+            battle.getBattle(req.params.id)
+
+            .then(result =>{
+
+
+              res.json(result);
+            })
+
+            .catch(err => res.status(err.status).json({ message: err.message }));
+
+
+        } else {
+
+            res.status(401).json({ message: 'Invalid Token !' });
+        }
+    });
     router.get('/landscape/:id', (req,res) => {
-//адрес для получения всех ячеек открытых героем
+      //адрес для получения всех ячеек открытых героем
         if (checkToken(req)) {
 
             getlandscape.findAllLands(req.params.id)

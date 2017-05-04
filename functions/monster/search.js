@@ -3,11 +3,11 @@
 const monster = require('../../models/monster');
 
 
-exports.search = (level) =>
+exports.search = (name) =>
 
     new Promise((resolve,reject) => {
 
-        monster.find({level: level})
+        monster.find({name: name})
 
         .then(monsters => {
 
@@ -16,8 +16,10 @@ exports.search = (level) =>
                 reject({ status: 404, message: 'Monsters Not Found !' });
 
             } else {
-
-                resolve({ status: 200, message: monsters });
+        var n = new monster({});
+        n = monsters[0]
+                resolve({n})
+                //resolve({ status: 200, message: monsters});
 
             }
         })
