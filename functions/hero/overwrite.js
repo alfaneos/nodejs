@@ -12,6 +12,7 @@ exports.rewriteHero = (newhero) =>
       var inventorysize= newhero.inventorysize;
       var inventory= newhero.inventory;
       var destinationCoordinates= newhero.destinationcoordinates;
+      var respawnCoordinates = newhero.respawncoordinates;
       var logonDate= newhero.logonDate;
       var currentCoordinates= newhero.currentcoordinates;
       var maxCharacteristics= newhero.maxcharacteristics;
@@ -27,7 +28,7 @@ var hh=newhero;
 
 
         hero.findOneAndUpdate({email:email}, {$set:{level: level, inventorysize: inventorysize, inventory: inventory,
-        destinationCoordinates: destinationCoordinates, logonDate: logonDate, currentCoordinates:currentCoordinates,
+        destinationCoordinates: destinationCoordinates, respawnCoordinates: respawnCoordinates, logonDate: logonDate, currentCoordinates:currentCoordinates,
       maxCharacteristics: maxCharacteristics, currentCharacteristics: currentCharacteristics,
       maxStats:maxStats, currentStats: currentStats, lastEnemy: lastEnemy,
     lastStrike: lastStrike, class1: class1}},{upsert: true},function(err, doc){

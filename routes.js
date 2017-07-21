@@ -133,8 +133,9 @@ module.exports = router => {
         const currentStats=[1,1,1,1,1];
         const currentCoordinates = [0,0,0,0,0];
         const destinationCoordinates = [0,0,0,0,0];
+        const respawnCoordinates = [0,0,0,0,0];
         const logonDate = new Date();
-        const lastEnemy = [0,0,0,0,0,0];
+        const lastEnemy = {name:0,level:0,class1:[0],characteristics:[0],stats:[0],abilities:[0]};
         const lastStrike=false;
 
         if (!name || !email || !name.trim() || !email.trim()) {
@@ -145,7 +146,7 @@ module.exports = router => {
 
             createHero.createHero(name, email, class1, inventorysize, inventory, abilities, level,
               maxCharacteristics, currentCharacteristics, maxStats, currentStats, currentCoordinates,
-            destinationCoordinates, logonDate, lastEnemy, lastStrike)
+            destinationCoordinates, respawnCoordinates, logonDate, lastEnemy, lastStrike)
 
             .then(result => {
 
@@ -165,6 +166,7 @@ module.exports = router => {
         const stats=req.body.stats;
         const inventory = req.body.inventory;
         const abilities = req.body.abilities;
+        const idNumber = parseInt(name, 36);
 
         if (!name || !level || !class1 || !name.trim()) {
 
@@ -172,7 +174,7 @@ module.exports = router => {
 
         } else {
 
-            createMonster.createMonster(name, level, class1, characteristics, stats, inventory, abilities)
+            createMonster.createMonster(name, idNumber, level, class1, characteristics, stats, inventory, abilities)
 
             .then(result => {
 

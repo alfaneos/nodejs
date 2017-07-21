@@ -3,7 +3,7 @@
 const monster = require('../../models/monster');
 
 
-exports.createMonster = (name, level, class1, characteristics, stats, inventory, abilities) =>
+exports.createMonster = (name, idnumber, level, class1, characteristics, stats, inventory, abilities) =>
 
     new Promise((resolve,reject) => {
 
@@ -35,7 +35,7 @@ exports.createMonster = (name, level, class1, characteristics, stats, inventory,
         //         reject({ status: 500, message: 'Internal Server Error !'+err });
         //     }
         // });
-        monster.findOneAndUpdate({name: name}, {$set:{name: name, level: level, class1:class1, characteristics:characteristics,
+        monster.findOneAndUpdate({name: name}, {$set:{name: name, idnumber:idnumber, level: level, class1:class1, characteristics:characteristics,
         stats:stats, inventory:inventory, abilities:abilities}},{upsert: true},function(err, doc){
             if(err){
 reject({ status: 409, message: 'Some Errorr !' });

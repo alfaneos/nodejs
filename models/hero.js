@@ -20,8 +20,16 @@ const heroSchema = mongoose.Schema({
     inventory : [Number],//инвентарь
     currentCoordinates : [Number],//текущие координаты: альфаХ алфаУ бетаХ бетаУ
     destinationCoordinates: [Number],//координаты направления
+    respawnCoordinates: [Number],//Координаты воскрешения,
     logonDate: Date,//дата последних изменений
-    lastEnemy: [String],//массив последнего противника: имя, модификатор, текущее здоровье
+    lastEnemy: {
+        name: String,
+        level: Number,
+        class1: [Number],
+        characteristics: [Number],
+        stats: [Number],
+        abilities: [Number]
+    },//массив последнего противника: имя, модификатор, текущее здоровье
     lastStrike: Boolean//бил ли герой последним?
 
 });

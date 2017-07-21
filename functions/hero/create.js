@@ -5,7 +5,7 @@ const hero = require('../../models/hero');
 
 exports.createHero = (name, email, class1, inventorysize, inventory, abilities, level,
    maxcharacteristics, currentharacteristics, maxstats, currentstats,
-   currentcoordinates, destinationcoordinates, logonDate, lastenemy, laststrike) =>
+   currentcoordinates, destinationcoordinates, respawncoordinates, logonDate, lastenemy, laststrike) =>
 
     new Promise((resolve,reject) => {
 
@@ -19,6 +19,7 @@ exports.createHero = (name, email, class1, inventorysize, inventory, abilities, 
             inventorysize: inventorysize,
             inventory: inventory,
             destinationCoordinates: destinationcoordinates,
+            respawnCoordinates: respawncoordinates,
             logonDate: logonDate,
             currentCoordinates: currentcoordinates,
             maxCharacteristics: maxcharacteristics,

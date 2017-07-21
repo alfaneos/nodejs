@@ -1,29 +1,36 @@
 'use strict';
 
-const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
 
-const monsterSchema = mongoose.Schema({
+var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
+
+var Schema = mongoose.Schema;
+var connection = mongoose.createConnection('mongodb://localhost:27017/node-login');
+autoIncrement.initialize(connection);
+var monsterSchema = mongoose.Schema({
 
 
 
     name              : String,
+    idnumber: Number,
     level : Number,//уровень, опыт
-    class1 : [String],//список классов
+    class1 : [Number],//список классов
     characteristics : [Number],//здоровье, выносливость, мана
     stats: [Number],//телосложение, выносливость, чакры, сила, ловкость
     inventory : [Number],//список вещей
     abilities : [Number]//список способностей
 
 
-
-
-
 });
 
+monsterSchema.plugin(autoIncrement.plugin, 'Monster');
+var Monster = connection.model('Monster', monsterSchema);
+
+
 mongoose.Promise = global.Promise;
-mongoose.createConnection('mongodb://localhost:27017/node-login');
+
 
 module.exports = mongoose.model('monster', monsterSchema);
 
